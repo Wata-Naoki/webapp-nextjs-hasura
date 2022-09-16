@@ -3,7 +3,7 @@ import { FormEvent, useState, VFC } from 'react'
 import { Layout } from '../components/Layout'
 import { UserItem } from '../components/UserItem'
 import {
-  CREATE_USERS,
+  CREATE_USER,
   DELETE_USER,
   GET_USERS,
   UPDATE_USER,
@@ -22,7 +22,7 @@ const HasuraCRUD: VFC = () => {
   })
   const [updata_users_by_pk] = useMutation<UpdateUserMutation>(UPDATE_USER)
 
-  const [insert_users_one] = useMutation<CreateUserMutation>(CREATE_USERS, {
+  const [insert_users_one] = useMutation<CreateUserMutation>(CREATE_USER, {
     update(cache, { data: { insert_users_one } }) {
       const cacheId = cache.identify(insert_users_one)
       cache.modify({
