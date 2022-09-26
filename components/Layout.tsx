@@ -61,14 +61,14 @@ export const Layout: VFC<Props> = ({
                     SSG+ISR(Hasura)
                   </a>
                 </Link>
-                <Link href="/hookd-memo">
-                  <a
-                    data-testid="ssg-nav"
-                    className="text-gray-300 hover:bg-gray-700 px-3 py-2 rounded"
-                  >
-                    custom hoook + memo
-                  </a>
-                </Link>
+                <Link href="/hooks-memo">
+                <a
+                  data-testid="memo-nav"
+                  className="text-gray-300 hover:bg-gray-700 px-3 py-2 rounded"
+                >
+                  custom hook + memo
+                </a>
+              </Link>
               </div>
             </div>
           </nav>
