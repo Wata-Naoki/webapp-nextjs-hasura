@@ -21,7 +21,7 @@ interface Props {
 // eslint-disable-next-line react/display-name
 export const UserItem: VFC<Props> = memo<Props>(
   ({ user, delete_users_by_pk, setEditedUser }) => {
-    console.log('UserItem renderers')
+    //console.log('UserItem renderers')
     return (
       <>
         <div className="my-1">

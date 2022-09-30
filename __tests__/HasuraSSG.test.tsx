@@ -8,6 +8,7 @@ import { getPage, initTestHelpers } from 'next-page-tester'
 import { setupServer } from 'msw/node'
 import { handlers } from '../mock/handlers'
 import 'setimmediate'
+import { initializeApollo } from '../lib/apolloClient'
 process.env.NEXT_PUBLIC_HASURA_URL =
   'https://stirred-escargot-44.hasura.app/v1/graphql'
 
@@ -17,25 +18,23 @@ const server = setupServer(...handlers)
 beforeAll(() => {
   server.listen()
 })
-
 afterEach(() => {
   server.resetHandlers()
   cleanup()
 })
-
 afterAll(() => {
   server.close()
 })
 
-describe('Hasura Fetch Test Cases', () => {
-  it('Should render the list of users by useQuery', async () => {
+describe('SSG Test Cases', () => {
+  it('Should render the list of users pre-fetched by getStaticProps', async () => {
     const { page } = await getPage({
-      route: '/hasura-main',
+      route: '/hasura-ssg',
     })
     render(page)
-    expect(await screen.findByText('Hasura main page')).toBeInTheDocument()
-    expect(await screen.findByText('Test user A')).toBeInTheDocument()
-    expect(await screen.findByText('Test user B')).toBeInTheDocument()
-    expect(await screen.findByText('Test user C')).toBeInTheDocument()
+    expect(await screen.findByText('SSG+ISR')).toBeInTheDocument()
+    expect(screen.getByText('Test user A')).toBeInTheDocument()
+    expect(screen.getByText('Test user B')).toBeInTheDocument()
+    expect(screen.getByText('Test user C')).toBeInTheDocument()
   })
 })
