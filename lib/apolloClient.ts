@@ -4,7 +4,7 @@ import {
   InMemoryCache,
   NormalizedCacheObject,
 } from '@apollo/client'
-
+import fetch from 'cross-fetch'
 export const APOLLO_STATE_PROP_NAME = '__APOLLO_STATE__'
 
 let apolloClient: ApolloClient<NormalizedCacheObject> | undefined
@@ -14,6 +14,7 @@ const createApolloClient = () => {
     ssrMode: typeof window === 'undefined',
     link: new HttpLink({
       uri: 'https://stirred-escargot-44.hasura.app/v1/graphql',
+      fetch,
     }),
     cache: new InMemoryCache(),
   })
